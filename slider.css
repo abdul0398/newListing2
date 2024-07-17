@@ -1,0 +1,43 @@
+.left-pane {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+.right-pane{
+    height: 100% !important;
+}
+
+.divider {
+    width: 1px;
+    background-color: rgb(190, 190, 190);
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .right-pane {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .divider {
+        display: none;
+    }
+    .left-pane{
+        width: 100% !important;
+        min-height: 100% !important;
+    }
+    #map-bottom-listing{
+        display: none;
+    }
+    #mapdiv{
+        height: 100% !important;
+    }
+    #dev-form-mobile{
+        display: block;
+    }
+    
+    
+}
