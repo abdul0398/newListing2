@@ -415,21 +415,33 @@
         border-radius: 4px;
         margin-top: 9px;
       }
-      .drop-down-search {
+      .drop-down-search, .drop-down-search-inner {
         width: 100%;
         min-width: 100%;
         position: absolute;
         height: 350px;
         border: 1px solid;
-        z-index: 10;
+        z-index: 1000;
         top: 43px;
         border-radius: 5px;
         background-color: white;
         overflow: auto;
         border: 1px solid #d5d5d5;
       }
+      .drop-down-search-inner{
+        width: 30% !important;
+        min-width: 30% !important;
+      }
 
       #search {
+        width: 100%;
+        min-width: 100%;
+        background-color: white;
+        border-radius: 31px;
+        box-shadow: -5px 5px 23px -3px rgba(189, 189, 189, 1);
+        height: 50px;
+      }
+      #innerSearch {
         width: 100%;
         min-width: 100%;
         background-color: white;
@@ -928,7 +940,7 @@
         
        
         <div id="single-listing" class="d-none w-100 h-100">
-          <!-- <div class="inner-listing-filter d-flex justify-content-center align-items-center" style="width: 100%; padding: 10px 0px;">
+          <div class="inner-listing-filter d-flex justify-content-center align-items-center" style="width: 100%; padding: 10px 0px;">
               <div
                 class="d-flex gap-1"
                 style="width: 30%;"
@@ -936,14 +948,14 @@
               <input
                 class="form-control search"
                 type="search"
-                id="search"
-                oninput="searchListingsInner(this)"
+                id="innerSearch"
+                oninput="searchListings(this, 'inner')"
                 placeholder="Search Address"
                 value=""
               />
-              <div class="drop-down-search d-none"></div>
+              <div class="drop-down-search-inner d-none"></div>
             </div>
-            <div id="" class="d-lg-flex d-none text-center justify-content-center">
+            <div class="d-lg-flex d-none text-center justify-content-center" style="width: 50%;">
               <div class="filter-select-div">
                 <select
                   class="form-select select-filter1"
@@ -1002,7 +1014,7 @@
                   <option value="4000-10000">4000+ sqft</option>
                 </select>
               </div>
-    
+<!--     
                <div>
                
                 <button
@@ -1021,10 +1033,10 @@
                 >
                   More
                 </button>
-              </div> 
+              </div>  -->
               
             </div>
-          </div> -->
+          </div>
 
           <div class="donate-detail-header">
             <i
@@ -1341,6 +1353,8 @@
                     representatives! <a href=""> Enquire now!</a>
                   </div>
                 </div>
+                
+                
                 <div class="listing-form-container">
                   <div id="dev-form" class="bg-white">
                     <div>
@@ -1447,7 +1461,7 @@
                           Arrange Showflat Viewing
                         </label>
                       </div>
-
+  
                       <div style="margin-top: 30px; padding: 0px 10px">
                         <input
                           style="
@@ -1462,7 +1476,7 @@
                           placeholder="Name"
                         />
                       </div>
-
+  
                       <div style="margin-top: 15px; padding: 0px 10px">
                         <input
                           style="
@@ -1477,7 +1491,7 @@
                           placeholder="Phone"
                         />
                       </div>
-
+  
                       <div style="margin-top: 15px; padding: 0px 10px">
                         <input
                           style="
@@ -1543,8 +1557,6 @@
                     </div>
                   </div>
                 </div>
-
-               
               </div>
             </div>
           </div>
