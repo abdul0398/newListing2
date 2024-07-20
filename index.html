@@ -80,7 +80,6 @@
         width: 100%;
         border-radius: 15px;
         padding: 5px;
-        height: 100%;
         overflow: auto;
       }
 
@@ -405,14 +404,16 @@
         border-radius: 4px;
       }
       .scroll-btn {
-        background: transparent;
-        border: none;
-        color: #39548a;
-        font-weight: 900;
+      border: none;
+      color: white;
+      font-size: 13px;
+      border-radius: 5px;
+      background-color: #39548a;
+      padding: 4px 8px;
       }
       #dev-form {
         padding: 15px 0px;
-        border-radius: 4px;
+        border-radius: 25px;
         margin-top: 9px;
       }
       .drop-down-search, .drop-down-search-inner {
@@ -462,10 +463,8 @@
       }
       .single-listing-inner {
         padding-right: 20px;
-        width: 70%;
       }
       .listing-form-container {
-        width: 45%;
         height: 500px;
         position: sticky;
         top: 20px;
@@ -518,7 +517,7 @@
         left: 50%;
         z-index: -1;
         transform: translateX(-50%);
-        padding: 10px;
+        padding: 10px 0px;
       }
       #all-listings{
         width: 50%;
@@ -562,6 +561,19 @@
         min-width: 300px;
         height: 300px;
         border-radius: 25px;
+      }
+      #map-cover{
+        position: absolute;
+  height: 20px;
+  /* width: 80%;  */
+  bottom: 0px;
+  z-index: 9999;
+  background-color: #ffefbe;
+  right: 0px;
+  text-align: center;
+  padding: 0px 5px;
+  font-weight: 600;
+
       }
 
     </style>
@@ -1044,7 +1056,11 @@
               onclick="showMainPage()"
               style="top: 25px; left: 4%; cursor: pointer; z-index: 999;"
             ></i>
-            <div id="single-listing-map"></div>
+            <div id="single-listing-map">
+              <div id="map-cover">
+                With powerful filtration algorithms, an innovative listing approach, and detailed sales analytics, supported by data from HDB OneMap and URA.gov, you'll quickly find the most suitable new launches.
+              </div>
+            </div>
 
             <div class="donate-header-text">
               <!-- Scroll buttons -->
@@ -1568,6 +1584,11 @@
         class="right-pane h-100 w-100"
       >
         <div id="mapdiv">
+
+          <div id="map-cover">
+            With powerful filtration algorithms, an innovative listing approach, and detailed sales analytics, supported by data from HDB OneMap and URA.gov, you'll quickly find the most suitable new launches.
+
+          </div>
           <div
             class="map-search-container"
             style="z-index: 999;
@@ -1616,8 +1637,8 @@
               <div class="drop-down-search d-none"></div>
               
             </div>
-            <div id="filters-container" class="d-lg-flex d-none text-center justify-content-center">
-              <div class="filter-select-div">
+            <div id="filters-container" class="d-lg-flex d-none text-center justify-content-between">
+              <div class="filter-select-div" style="margin-left: 0px;">
                 <select
                   class="form-select select-filter1"
                   name="price"
@@ -1731,104 +1752,44 @@
               </div>
 
             </div>
-            <div id="listing-carousel">
-              <div class="carousel-listing-item">
-                <div>
-                  <img class="carousel-listing-img" src="https://api.jomejourney-portal.com/uploads/739e4215e56a9c4fdc8554aa2427c1.jpg" alt="">
-                </div>
-                <div>
-                  <div class="p-3">
-                      <a class="pe-auto" onClick="">
-                          <h5 class="card-title mb-2" style="color:#000000;font-size: 16px;"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">Lentoria</button></h5>
-                      </a>
-                      <h6 class="card-subtitle mb-1 text-muted" style="font-size: 14px;">
-                        North Region <br>
-                      </h6>
-                      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                        <span>
-                          <span class="fa fa-star checked" style="color: #dbae00;"></span>
-                          4.5
-                        </span>
-                        <span>
-                          <i style="font-size: 18px;" class="fa-solid fa-heart"></i>
-                        </span>
-                      </div>
-                  </div>
-                </div>
+            <div style="position: relative;">
+              <div  style="
+                position: absolute;
+                left: 7px;
+                top: 50%;
+                z-index:1;
+                transform: translateY(-50%);
+                ">
+                <button onclick="scrollListings('left')" style="
+                    background-color: transparent;
+                    border: none;
+                    color: white;
+                    font-size: 40px; 
+                ">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
               </div>
-              <div class="carousel-listing-item">
-                <div>
-                  <img class="carousel-listing-img" src="https://api.jomejourney-portal.com/uploads/739e4215e56a9c4fdc8554aa2427c1.jpg" alt="">
-                </div>
-                <div>
-                  <div class="p-3">
-                      <a class="pe-auto" onClick="">
-                          <h5 class="card-title mb-2" style="color:#000000;font-size: 16px;"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">Lentoria</button></h5>
-                      </a>
-                      <h6 class="card-subtitle mb-1 text-muted" style="font-size: 14px;">
-                        North Region <br>
-                      </h6>
-                      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                        <span>
-                          <span class="fa fa-star checked" style="color: #dbae00;"></span>
-                          4.5
-                        </span>
-                        <span>
-                          <i style="font-size: 18px;" class="fa-solid fa-heart"></i>
-                        </span>
-                      </div>
-                  </div>
-                </div>
+              <div  style="
+                  position: absolute;
+                  right: 7px;
+                  z-index:1;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  ">
+                <button onclick="scrollListings('right')" style="
+                    background-color: transparent;
+                    border: none;
+                    color: white;
+                    font-size: 40px; 
+                " >
+                  <i class="fa-solid fa-chevron-right">
+                  </i>
+                </button>
               </div>
-              <div class="carousel-listing-item">
-                <div>
-                  <img class="carousel-listing-img" src="https://api.jomejourney-portal.com/uploads/739e4215e56a9c4fdc8554aa2427c1.jpg" alt="">
-                </div>
-                <div>
-                  <div class="p-3">
-                      <a class="pe-auto" onClick="">
-                          <h5 class="card-title mb-2" style="color:#000000;font-size: 16px;"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">Lentoria</button></h5>
-                      </a>
-                      <h6 class="card-subtitle mb-1 text-muted" style="font-size: 14px;">
-                        North Region <br>
-                      </h6>
-                      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                        <span>
-                          <span class="fa fa-star checked" style="color: #dbae00;"></span>
-                          4.5
-                        </span>
-                        <span>
-                          <i style="font-size: 18px;" class="fa-solid fa-heart"></i>
-                        </span>
-                      </div>
-                  </div>
-                </div>
+              <div id="listing-carousel">
+                
+                
               </div>
-              <div class="carousel-listing-item">
-                <div>
-                  <img class="carousel-listing-img" src="https://api.jomejourney-portal.com/uploads/739e4215e56a9c4fdc8554aa2427c1.jpg" alt="">
-                </div>
-                <div>
-                  <div class="p-3">
-                      <a class="pe-auto" onClick="">
-                          <h5 class="card-title mb-2" style="color:#000000;font-size: 16px;"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">Lentoria</button></h5>
-                      </a>
-                      <h6 class="card-subtitle mb-1 text-muted" style="font-size: 14px;">
-                        North Region <br>
-                      </h6>
-                      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                        <span>
-                          <span class="fa fa-star checked" style="color: #dbae00;"></span>
-                          4.5
-                        </span>
-                        <span>
-                          <i style="font-size: 18px;" class="fa-solid fa-heart"></i>
-                        </span>
-                      </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>

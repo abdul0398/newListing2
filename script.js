@@ -93,6 +93,23 @@ function openMap(id) {
   }
 }
 
+
+
+
+
+async function handlePopupClick(index){
+  const listing = listings[index];
+  const btn = document.createElement("button");
+  btn.innerText = listing.name;
+
+  openSingleListing(btn);
+
+
+}
+
+
+
+
 async function fetchCoordinatesAndPopulateMap(listings, map, type) {
   for (let i = 0; i < listings.length; i++) {
     const project = listings[i];
@@ -118,7 +135,7 @@ async function fetchCoordinatesAndPopulateMap(listings, map, type) {
       ? project.transactions[0]
       : null;
     const popupContent = `
-            <div class="w-200" id="popup-${i}" style="height: 180px;">
+            <div class="w-200" id="popup-${i}" style="height: 180px;" onclick="handlePopupClick(${i})">
                 <div class="donate-title d-flex" style="height: 120px; padding:5px">
                     <img src="https://api.jomejourney-portal.com${
                       project.images[0] ? project.images[0] : project.images[1]
@@ -203,11 +220,11 @@ async function fetchCoordinatesAndPopulateMap(listings, map, type) {
     });
 
     // Hide popup when mouse leaves
-    marker.on("mouseout", function (e) {
-      setTimeout(() => {
-        marker.closePopup();
-      }, 2000);
-    });
+    // marker.on("mouseout", function (e) {
+    //   setTimeout(() => {
+    //     marker.closePopup();
+    //   }, 2000);
+    // });
 
     marker.on("click", function (e) {
       const name = project.name;
@@ -585,10 +602,21 @@ function addInfoToSingleListing(
     thumbnail: true,
   });
 }
+function scrollListings(direction) {
+  const carousel = document.getElementById("listing-carousel");
+  const scrollAmount = 300;
+  if (direction == "left") {
+    carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  } else {
+    carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  }
+}
+
 
 function populateAllListings(listings) {
   const listingCarousel = document.getElementById("listing-carousel");
   listingCarousel.innerHTML = "";
+
 
   for (let i = 0; i < listings.length; i++) {
     const address =
@@ -645,12 +673,18 @@ function populateAllListings(listings) {
                       <span style="font-weight: bold; color: black; padding: 3px;border-radius: 2px;">Sold: ${unitsSold} units</span>
                     </div>
                   </div>
+                   <div class="pt-3" style="padding-left: 1rem;">
+                      <button class="read-more-btn" onclick="openSingleListing(this)" data_name="${listings[i].name}">Read More</button>
+                    </div>
                 </div>
               </div>`;
     }
 
     listingCarousel.innerHTML += `
         <div class="carousel-listing-item">
+
+       
+
                   <div style="position:relative" >
                    ${
                      dev_type
@@ -717,6 +751,11 @@ function showMainPage() {
 
 function openSingleListing(btn, type) {
   let name = btn.innerText;
+
+
+  if(name == "Read More"){
+    name = btn.getAttribute("data_name");
+  }
 
   document.getElementById("map-container").classList.add("d-none");
 
@@ -1169,6 +1208,8 @@ function closeDropDown() {
 }
 
 function extractSelectValues() {
+
+  const container = document.getElementById("filters-container")
   let selectedFilters = {
     project_size: [],
     region: [],
@@ -1181,51 +1222,51 @@ function extractSelectValues() {
     sqft: [],
   };
 
-  document
+  container
     .querySelectorAll("select[name='project_size'] option:checked")
     .forEach((option) => {
       selectedFilters.project_size.push(option.value);
     });
-  document
+  container
     .querySelectorAll("select[name='region'] option:checked")
     .forEach((option) => {
       selectedFilters.region.push(option.value);
     });
-  document
+  container
     .querySelectorAll("select[name='unit_category'] option:checked")
     .forEach((option) => {
       selectedFilters.unit_category.push(option.value);
     });
-  document
+  container
     .querySelectorAll("select[name='market_segment'] option:checked")
     .forEach((option) => {
       selectedFilters.market_segment.push(option.value);
     });
-  document
+  container
     .querySelectorAll("select[name='top'] option:checked")
     .forEach((option) => {
       selectedFilters.TOP.push(option.value);
     });
 
-  document
+  container
     .querySelectorAll("select[name='price'] option:checked")
     .forEach((option) => {
       selectedFilters.price.push(option.value);
     });
 
-  document
+  container
     .querySelectorAll("select[name='psf'] option:checked")
     .forEach((option) => {
       selectedFilters.psf.push(option.value);
     });
 
-  document
+  container
     .querySelectorAll("select[name='bedrooms'] option:checked")
     .forEach((option) => {
       selectedFilters.bedrooms.push(option.value);
     });
 
-  document
+  container
     .querySelectorAll("select[name='sqft'] option:checked")
     .forEach((option) => {
       selectedFilters.sqft.push(option.value);
@@ -1235,6 +1276,7 @@ function extractSelectValues() {
 }
 
 function applyFilterSelect() {
+
   document.getElementById("all-listings").classList.remove("d-none");
 
   // remove the circle from the map and zoom out
@@ -1418,12 +1460,7 @@ function applyFilterSelect() {
             const { lowerValue, upperValue } = changePsfString(
               selectedFilters[category][i]
             );
-            console.log(
-              lowerValueOfPSF,
-              upperValueOfPSF,
-              lowerValue,
-              upperValue
-            );
+           
             if (
               (lowerValueOfPSF >= lowerValue &&
                 lowerValueOfPSF <= upperValue) ||
@@ -1484,6 +1521,7 @@ function applyFilterSelect() {
     }
     return isMatch;
   });
+
 
   // remove all markers from the map
   markerArray.forEach((marker) => {
