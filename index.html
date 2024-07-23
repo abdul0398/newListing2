@@ -71,16 +71,15 @@
         width: 100vw;
       }
       .leaflet-tile-container {
-         filter: brightness(0.9); 
-         border-radius: 0px;
-        }
+        filter: brightness(0.9);
+        border-radius: 0px;
+      }
       .donate-detail-header {
         background-color: white;
         position: relative;
         width: 100%;
         border-radius: 15px;
         padding: 5px;
-        overflow: auto;
       }
 
       #single-listing-map {
@@ -113,7 +112,6 @@
         border-radius: 15px;
         transform: translateY(-10px);
         background-color: #f1f4f9;
-       
 
         .donate-title {
           display: flex;
@@ -236,7 +234,6 @@
         height: 40px;
       }
       @media (max-width: 500px) {
-       
         #single-listing,
         .single-listing-inner,
         #map-container {
@@ -264,16 +261,16 @@
         .listing-form-container {
           display: none !important;
         }
-       
-        #top-header{
+
+        #top-header {
           flex-direction: column;
         }
 
-        #top-header img{
+        #top-header img {
           width: 100%;
           height: 300px;
         }
-        .single-listing-inner{
+        .single-listing-inner {
           padding-right: 0px !important;
         }
       }
@@ -404,19 +401,21 @@
         border-radius: 4px;
       }
       .scroll-btn {
-      border: none;
-      color: white;
-      font-size: 13px;
-      border-radius: 5px;
-      background-color: #39548a;
-      padding: 4px 8px;
+        border: none;
+        color: white;
+        font-size: 13px;
+        border-radius: 5px;
+        background-color: transparent;
+        padding: 4px 8px;
+        transition: ease-in-out 0.2s;
       }
       #dev-form {
         padding: 15px 0px;
         border-radius: 25px;
         margin-top: 9px;
       }
-      .drop-down-search, .drop-down-search-inner {
+      .drop-down-search,
+      .drop-down-search-inner {
         width: 100%;
         min-width: 100%;
         position: absolute;
@@ -429,7 +428,7 @@
         overflow: auto;
         border: 1px solid #d5d5d5;
       }
-      .drop-down-search-inner{
+      .drop-down-search-inner {
         width: 30% !important;
         min-width: 30% !important;
       }
@@ -463,13 +462,15 @@
       }
       .single-listing-inner {
         padding-right: 20px;
+        width: 75%;
       }
       .listing-form-container {
         height: 500px;
         position: sticky;
         top: 20px;
-        max-width: 350px;
-        min-width: 300px;
+        /* max-width: 350px; */
+        min-width: 222px;
+        width: 25%;
       }
       .listing-form-container-mobile {
         width: 100%;
@@ -510,7 +511,7 @@
       .left-pane {
         transition: 0.4 ease-in-out;
       }
-      #filters-container{
+      #filters-container {
         position: absolute;
         width: 70%;
         top: 90px;
@@ -519,9 +520,9 @@
         transform: translateX(-50%);
         padding: 10px 0px;
       }
-      #all-listings{
+      #all-listings {
         width: 50%;
-        max-height: 80%; 
+        max-height: 80%;
         top: 50%;
         transform: translateY(-50%);
         position: absolute;
@@ -535,47 +536,48 @@
         padding: 20px;
       }
 
-      #main-listing-img{
-        width: 100%;
+      #main-listing-img {
+        aspect-ratio: 1;
         border-radius: 30px;
-        height: 350px;
+        height: 200px;
       }
-      #listing-carousel{
-        display: flex;
+      #listing-carousel {
+        display: grid;
+        grid-template-columns: auto auto auto;
         overflow-x: auto;
         position: relative;
         max-width: 100%;
         padding: 5px 2px;
-        gap: 25px;
+        row-gap: 25px;
+        column-gap: 10px;
         margin-top: 15px;
-
       }
-      .carousel-listing-img{
+      .carousel-listing-img {
         width: 100%;
         height: 180px;
         border-top-left-radius: 25px;
         border-top-right-radius: 25px;
       }
-      .carousel-listing-item{
-        box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
-        min-width: 300px;
+      .carousel-listing-item {
+        box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
         height: 300px;
         border-radius: 25px;
       }
-      #map-cover{
+      #map-cover {
         position: absolute;
-  height: 20px;
-  /* width: 80%;  */
-  bottom: 0px;
-  z-index: 9999;
-  background-color: #ffefbe;
-  right: 0px;
-  text-align: center;
-  padding: 0px 5px;
-  font-weight: 600;
-
+        height: 20px;
+        /* width: 80%;  */
+        bottom: 0px;
+        z-index: 9999;
+        background-color: #ffefbe;
+        right: 0px;
+        text-align: center;
+        padding: 0px 5px;
+        font-weight: 600;
       }
-
+      .scroll-btn:hover {
+        scale: 1.2;
+      }
     </style>
 
     <link rel="stylesheet" href="slider.css" />
@@ -949,14 +951,12 @@
     </div> -->
     <div class="d-flex h-100 main-container">
       <div class="left-pane position-asbolute d-none">
-        
-       
         <div id="single-listing" class="d-none w-100 h-100">
-          <div class="inner-listing-filter d-flex justify-content-center align-items-center" style="width: 100%; padding: 10px 0px;">
-              <div
-                class="d-flex gap-1"
-                style="width: 30%;"
-              >
+          <div
+            class="inner-listing-filter d-flex justify-content-center align-items-center"
+            style="width: 100%; padding: 10px 0px"
+          >
+            <div class="d-flex gap-1" style="width: 30%">
               <input
                 class="form-control search"
                 type="search"
@@ -967,7 +967,10 @@
               />
               <div class="drop-down-search-inner d-none"></div>
             </div>
-            <div class="d-lg-flex d-none text-center justify-content-center" style="width: 50%;">
+            <div
+              class="d-lg-flex d-none text-center justify-content-center"
+              style="width: 50%"
+            >
               <div class="filter-select-div">
                 <select
                   class="form-select select-filter1"
@@ -1026,7 +1029,7 @@
                   <option value="4000-10000">4000+ sqft</option>
                 </select>
               </div>
-<!--     
+              <!--     
                <div>
                
                 <button
@@ -1046,7 +1049,6 @@
                   More
                 </button>
               </div>  -->
-              
             </div>
           </div>
 
@@ -1054,23 +1056,37 @@
             <i
               class="fa-solid fa-arrow-left fa-xl position-absolute text-white"
               onclick="showMainPage()"
-              style="top: 25px; left: 4%; cursor: pointer; z-index: 999;"
+              style="top: 25px; left: 4%; cursor: pointer; z-index: 999"
             ></i>
             <div id="single-listing-map">
               <div id="map-cover">
-                With powerful filtration algorithms, an innovative listing approach, and detailed sales analytics, supported by data from HDB OneMap and URA.gov, you'll quickly find the most suitable new launches.
+                With powerful filtration algorithms, an innovative listing
+                approach, and detailed sales analytics, supported by data from
+                HDB OneMap and URA.gov, you'll quickly find the most suitable
+                new launches.
               </div>
             </div>
 
             <div class="donate-header-text">
               <!-- Scroll buttons -->
 
-              <div style="height: 50px; overflow-x: auto; font-size: 12px">
+              <div
+                style="
+                  height: 50px;
+                  overflow-x: auto;
+                  background-color: #39548a;
+                  font-size: 12px;
+                  display: flex;
+                  border-radius: 10px;
+                "
+              >
                 <div
                   style="
                     display: flex;
                     min-width: 620px;
                     justify-content: space-around;
+                    align-items: center;
+                    width: 100%;
                   "
                 >
                   <button
@@ -1081,7 +1097,7 @@
                     <i class="fa-solid fa-circle-info"></i>
                     Project Details
                   </button>
-                  <div style="border: 1px solid #aeaeae"></div>
+
                   <button
                     data="sitePlan"
                     class="scroll-btn"
@@ -1090,7 +1106,6 @@
                     <i class="fa-solid fa-chart-area"></i>
                     Site Plan
                   </button>
-                  <div style="border: 1px solid #aeaeae"></div>
 
                   <button
                     data="location-map-container"
@@ -1100,7 +1115,6 @@
                     <i class="fa-solid fa-map"></i>
                     Location Map
                   </button>
-                  <div style="border: 1px solid #aeaeae"></div>
 
                   <button
                     data="unitMix"
@@ -1110,7 +1124,7 @@
                     <i class="fa-solid fa-square-poll-horizontal"></i>
                     Unit Mix
                   </button>
-                  <div style="border: 1px solid #aeaeae"></div>
+
                   <button
                     data="balanceUnits"
                     class="scroll-btn"
@@ -1119,7 +1133,6 @@
                     <i class="fa-solid fa-scale-balanced"></i>
                     Balance Units
                   </button>
-                  <div style="border: 1px solid #aeaeae"></div>
                   <button
                     data="transaction"
                     class="scroll-btn"
@@ -1135,27 +1148,35 @@
                 <div class="single-listing-inner me-auto">
                   <div class="bg-white d-flex mb-5 mt-2" id="top-header">
                     <div class="p-2">
-                      <img id="image-nxt-title" src="https://api.jomejourney-portal.com/uploads/6e6724084720f99f00703998b427c2.jpg" height="150px" style="border-radius: 15px;" width="200px" alt="">
+                      <img
+                        id="image-nxt-title"
+                        src="https://api.jomejourney-portal.com/uploads/6e6724084720f99f00703998b427c2.jpg"
+                        height="150px"
+                        style="border-radius: 15px"
+                        width="200px"
+                        alt=""
+                      />
                     </div>
                     <div class="p-3">
-
                       <div class="donate-title">
                         <h2
-                        id="projectName"
-                        style="color: black; font-size: 20px"
+                          id="projectName"
+                          style="color: black; font-size: 20px"
                         >
-                        Lentor Mansion
-                      </h2>
-                      <p><i class="fa-solid fa-star"></i>4.5</p>
+                          Lentor Mansion
+                        </h2>
+                        <p><i class="fa-solid fa-star"></i>4.5</p>
+                      </div>
+                      <div class="donate-detail-text">
+                        <p id="projectRegion">North Region</p>
+                      </div>
+                      <div class="donate-detail-desc">
+                        <h2 style="color: black; font-size: 16px">
+                          Description
+                        </h2>
+                        <p id="projectDesc" style="font-size: 14px"></p>
+                      </div>
                     </div>
-                    <div class="donate-detail-text">
-                      <p id="projectRegion">North Region</p>
-                    </div>
-                    <div class="donate-detail-desc">
-                      <h2 style="color: black; font-size: 16px">Description</h2>
-                      <p id="projectDesc" style="font-size: 14px"></p>
-                    </div>
-                  </div>
                   </div>
 
                   <!-- Gallery -->
@@ -1358,19 +1379,13 @@
                     </div>
                   </div>
 
-                 
-
-
-
-
                   <!-- Bottom sticky card -->
                   <div class="h-200 sticky-bottom-banner">
                     Zero commission fee! Enquire with Direct to developer
                     representatives! <a href=""> Enquire now!</a>
                   </div>
                 </div>
-                
-                
+
                 <div class="listing-form-container">
                   <div id="dev-form" class="bg-white">
                     <div>
@@ -1477,7 +1492,7 @@
                           Arrange Showflat Viewing
                         </label>
                       </div>
-  
+
                       <div style="margin-top: 30px; padding: 0px 10px">
                         <input
                           style="
@@ -1492,7 +1507,7 @@
                           placeholder="Name"
                         />
                       </div>
-  
+
                       <div style="margin-top: 15px; padding: 0px 10px">
                         <input
                           style="
@@ -1507,7 +1522,7 @@
                           placeholder="Phone"
                         />
                       </div>
-  
+
                       <div style="margin-top: 15px; padding: 0px 10px">
                         <input
                           style="
@@ -1578,33 +1593,26 @@
           </div>
         </div>
       </div>
-     
-      <div
-        id="map-container"
-        class="right-pane h-100 w-100"
-      >
+
+      <div id="map-container" class="right-pane h-100 w-100">
         <div id="mapdiv">
-
           <div id="map-cover">
-            With powerful filtration algorithms, an innovative listing approach, and detailed sales analytics, supported by data from HDB OneMap and URA.gov, you'll quickly find the most suitable new launches.
-
+            With powerful filtration algorithms, an innovative listing approach,
+            and detailed sales analytics, supported by data from HDB OneMap and
+            URA.gov, you'll quickly find the most suitable new launches.
           </div>
           <div
             class="map-search-container"
-            style="z-index: 999;
-            position: absolute;
-            width: 50%;
-            height: 100px;
-          "
+            style="z-index: 999; position: absolute; width: 50%; height: 100px"
           >
             <div
               class="d-flex gap-1"
               style="
-              position: absolute;
-              width: 70%;
-              top: 40px;
-              left: 50%;
-              transform: translateX(-50%);
+                position: absolute;
+                width: 70%;
+                top: 40px;
+                left: 50%;
+                transform: translateX(-50%);
               "
             >
               <input
@@ -1622,23 +1630,30 @@
               >
                 <button
                   class="filter-button"
-                  style="margin: 0px;
-                  color: #39548a;
-                  border: 1px solid #6f6f6f;
-                  background: white;
-                  border-radius: 5px;"
+                  style="
+                    margin: 0px;
+                    color: #39548a;
+                    border: 1px solid #6f6f6f;
+                    background: white;
+                    border-radius: 5px;
+                  "
                   type="button"
                   id="dropdownMenuButton"
                   onclick="openFilterPopup()"
                 >
-                  <i class="fa-solid fa-filter" style="font-size: 23px; color: #39548a;"></i>
+                  <i
+                    class="fa-solid fa-filter"
+                    style="font-size: 23px; color: #39548a"
+                  ></i>
                 </button>
               </div>
               <div class="drop-down-search d-none"></div>
-              
             </div>
-            <div id="filters-container" class="d-lg-flex d-none text-center justify-content-between">
-              <div class="filter-select-div" style="margin-left: 0px;">
+            <div
+              id="filters-container"
+              class="d-lg-flex d-none text-center justify-content-between"
+            >
+              <div class="filter-select-div" style="margin-left: 0px">
                 <select
                   class="form-select select-filter1"
                   name="price"
@@ -1696,9 +1711,8 @@
                   <option value="4000-10000">4000+ sqft</option>
                 </select>
               </div>
-    
+
               <div>
-               
                 <button
                   onclick="openFilterPopup()"
                   style="
@@ -1717,84 +1731,58 @@
                   <!-- <i class="fa-solid fa-arrow-down-long"></i> -->
                 </button>
               </div>
-              
             </div>
           </div>
-          
 
-          <div id="all-listings" >
-            <div class="main-listing">
-              <div class="d-flex">
-                <div style="width: 50%;">
-                  <img id="main-listing-img" alt="">
-                </div>
-                <div style="width: 50%; padding: 15px;">
-                  <div class="">
-                    <div class="card-body">
-                      <a class="pe-auto" onClick="">
-                          <h3 class="card-title mb-3" style="color:#4d4d4d"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">Lentoria</button></h3>
-                      </a>
-                      <h6 class="card-subtitle mb-1 text-muted" style="white-space: nowrap; text-overflow: ellipsis; width: 100%; overflow: hidden;">
-                        Slim Barracks Rise, D5 - Buona Vista / West Coast <br>
-                      </h6>
-                      </div>
-                      <p class='mb-2 text-muted' style="padding-left:1rem; font-size:11px">
-                      <img src="public/placeholder.png" width="20px" /> West Region
-                      </p>
-                    <p style="margin-bottom:0px; padding-left: 1rem; font-size: 11px; color: #6c757d !important; display: flex;align-items: center;gap: 6px;display: flex;align-items: center;gap: 6px;"><img src="public/meter.png" width="20px" />  0.48 km to CC 23 one-north</p>
-                    <div style="font-size:11px; padding:0px 1rem;line-height: 30px;">
-                      <span style="font-weight: bold; color: black; padding: 3px;border-radius: 2px;">Total: 200 units</span>
-                      <span style="font-weight: bold; color: black; padding: 3px;border-radius: 2px;">Available: 63 units</span>
-                      <span style="font-weight: bold; color: black; padding: 3px;border-radius: 2px;">Sold: 137 units</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div style="position: relative;">
-              <div  style="
-                position: absolute;
-                left: 7px;
-                top: 50%;
-                z-index:1;
-                transform: translateY(-50%);
-                ">
-                <button onclick="scrollListings('left')" style="
+          <div id="all-listings">
+            <div class="main-listing"></div>
+            <div style="position: relative">
+              <!-- <div
+                style="
+                  position: absolute;
+                  left: 7px;
+                  top: 50%;
+                  z-index: 1;
+                  transform: translateY(-50%);
+                "
+              >
+                <button
+                  onclick="scrollListings('left')"
+                  style="
                     background-color: transparent;
                     border: none;
                     color: white;
-                    font-size: 40px; 
-                ">
+                    font-size: 40px;
+                  "
+                >
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
               </div>
-              <div  style="
+              <div
+                style="
                   position: absolute;
                   right: 7px;
-                  z-index:1;
+                  z-index: 1;
                   top: 50%;
                   transform: translateY(-50%);
-                  ">
-                <button onclick="scrollListings('right')" style="
+                "
+              >
+                <button
+                  onclick="scrollListings('right')"
+                  style="
                     background-color: transparent;
                     border: none;
                     color: white;
-                    font-size: 40px; 
-                " >
-                  <i class="fa-solid fa-chevron-right">
-                  </i>
+                    font-size: 40px;
+                  "
+                >
+                  <i class="fa-solid fa-chevron-right"> </i>
                 </button>
-              </div>
-              <div id="listing-carousel">
-                
-                
-              </div>
+              </div> -->
+              <div id="listing-carousel"></div>
             </div>
           </div>
         </div>
-
-        
       </div>
     </div>
 

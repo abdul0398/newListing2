@@ -193,13 +193,10 @@ async function fetchCoordinatesAndPopulateMap(listings, map, type) {
     }
 
     marker.on("mouseover", function (e) {
-      // Open the popup
       marker.openPopup();
 
-      // Get the marker's latitude and longitude
       const latLng = marker.getLatLng();
 
-      // Calculate the new center position to move the marker slightly below the center
       const latlng =
         type == "inner"
           ? latLng.lng
@@ -212,19 +209,11 @@ async function fetchCoordinatesAndPopulateMap(listings, map, type) {
         latlng
       );
 
-      // Center the map on the new position
       map.setView(offsetLatLng, map.getZoom(), {
         animate: true,
-        pan: { duration: 0.5 },
+        pan: { duration: 2 },
       });
     });
-
-    // Hide popup when mouse leaves
-    // marker.on("mouseout", function (e) {
-    //   setTimeout(() => {
-    //     marker.closePopup();
-    //   }, 2000);
-    // });
 
     marker.on("click", function (e) {
       const name = project.name;
@@ -602,15 +591,15 @@ function addInfoToSingleListing(
     thumbnail: true,
   });
 }
-function scrollListings(direction) {
-  const carousel = document.getElementById("listing-carousel");
-  const scrollAmount = 300;
-  if (direction == "left") {
-    carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  } else {
-    carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  }
-}
+// function scrollListings(direction) {
+//   const carousel = document.getElementById("listing-carousel");
+//   const scrollAmount = 300;
+//   if (direction == "left") {
+//     carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+//   } else {
+//     carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+//   }
+// }
 
 
 function populateAllListings(listings) {
@@ -640,16 +629,16 @@ function populateAllListings(listings) {
     if (i == 0) {
       mainListingContainer.innerHTML = `
              <div class="d-flex">
-                <div style="width: 50%;">
+                <div>
                   <img id="main-listing-img" src="https://api.jomejourney-portal.com${
                     listings[i].images[0]
                       ? listings[i].images[0]
                       : listings[i].images[1]
                   }" alt="">
                 </div>
-                <div style="width: 50%; padding: 15px;">
-                  <div class="">
-                    <div class="card-body">
+                <div style="padding: 0px 15px; width: 70%;">
+                  <div >
+                    <div style="padding: 0px 1rem">
                       <a class="pe-auto" onClick="">
                           <h3 class="card-title mb-3" style="color:#4d4d4d"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">${
                             listings[i].name
@@ -682,9 +671,6 @@ function populateAllListings(listings) {
 
     listingCarousel.innerHTML += `
         <div class="carousel-listing-item">
-
-       
-
                   <div style="position:relative" >
                    ${
                      dev_type
