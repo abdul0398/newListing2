@@ -1,5 +1,5 @@
 const width = window.innerWidth;
 
 if (width < 600) {
-  window.location.href = "/mobile";
+  window.location.href = "/newListing2/mobile";
 }
