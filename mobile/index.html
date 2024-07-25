@@ -270,11 +270,10 @@
         color: white;
         margin: 20px 0px;
         font-size: 12px;
-        text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 2px 4px;
+        padding: 2px 10px;
       }
 
       .sticky-bottom-banner a {
@@ -362,11 +361,13 @@
       .scroll-btn {
         border: none;
         color: white;
-        font-size: 12px;
+        min-width: max-content;
+        font-size: 13px;
         border-radius: 5px;
-        background-color: #39548a;
-        padding: 1px 9px;
-        margin: 0px 6px;
+        background-color: transparent;
+        padding: 4px 8px;
+        transition: ease-in-out 0.2s;
+        margin:0px 10px
       }
       #dev-form{
         padding: 15px 0px;
@@ -772,7 +773,7 @@
 
       <div class="left-pane ">
         <div id="all-listings" class="w-100 h-100">
-          <div class="container house-list mb-3 h-100 overflow-auto">
+          <div class="container house-list mb-3 h-100 overflow-auto px-1">
             <div class="mt-3">
               <div class="d-flex gap-1" style="position: relative;">
                 <input
@@ -920,35 +921,35 @@
 
               <!-- Scroll buttons -->
 
-              <div style="height: 50px; overflow-x: auto;font-size: 12px;">
-                <div style="display: flex; min-width: 620px; justify-content: space-around;">
+              <div style="height: 50px; overflow-x: auto; background-color: #39548a; font-size: 12px; display: flex; border-radius: 10px;">
+                <div style="display: flex; justify-content: space-around;">
                   <button data="projectDetailTable" class="scroll-btn" onclick="handleScroll(this)">
                     <i class="fa-solid fa-circle-info"></i>
                     Project Details
                   </button>
-                  <div style="border: 1px solid #aeaeae;"></div>
+                  
                   <button data="sitePlan" class="scroll-btn" onclick="handleScroll(this)">
                     <i class="fa-solid fa-chart-area"></i>
                     Site Plan
                   </button>
-                  <div style="border: 1px solid #aeaeae;"></div>
+                  
                   
                   <button data="location-map-container" class="scroll-btn" onclick="handleScroll(this)">
                     <i class="fa-solid fa-map"></i>
                     Location Map
                   </button>
-                  <div style="border: 1px solid #aeaeae;"></div>
+                  
                   
                   <button data="unitMix" class="scroll-btn" onclick="handleScroll(this)">
                     <i class="fa-solid fa-square-poll-horizontal"></i>
                     Unit Mix
                   </button>
-                  <div style="border: 1px solid #aeaeae;"></div>
+                  
                   <button data="balanceUnits" class="scroll-btn" onclick="handleScroll(this)">
                     <i class="fa-solid fa-scale-balanced"></i>
                     Balance Units
                   </button>
-                  <div style="border: 1px solid #aeaeae;"></div>
+                  
                   <button data="transaction" class="scroll-btn" onclick="handleScroll(this)">
                     <i class="fa-solid fa-chart-simple"></i>
                     Transactions
@@ -1274,7 +1275,8 @@
 
                  <!-- Bottom sticky card -->
                  <div class="h-200 sticky-bottom-banner">
-                  Zero commission fee! Enquire with Direct to developer representatives! <a href=""> Enquire now!</a>
+                  <span style="font-size: 10px;">Zero commission fee! Enquire with Direct to developer representatives! </span>
+                  <a href="" style="width: 160px;"> Enquire now!</a>
                 </div>
             </div>
           </div>

@@ -91,6 +91,13 @@ function openMap(id) {
       checkMarkersInView();
     });
   }
+
+  let southWest = L.latLng(1.130475, 103.609082);
+  let northEast = L.latLng(1.450475, 104.009082);
+  let bounds = L.latLngBounds(southWest, northEast);
+
+  // Set the max bounds for the map
+  map.setMaxBounds(bounds);
 }
 
 
@@ -1845,6 +1852,12 @@ function openInnerMap(id) {
     }
   );
   basemap.addTo(innerMap);
+  let southWest = L.latLng(1.130475, 103.609082);
+  let northEast = L.latLng(1.450475, 104.009082);
+  let bounds = L.latLngBounds(southWest, northEast);
+
+  // Set the max bounds for the map
+  innerMap.setMaxBounds(bounds);
 }
 
 function applyFilterInner() {
